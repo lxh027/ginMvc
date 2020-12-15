@@ -1,4 +1,4 @@
-module OnlineJudge
+module Authority
 
 go 1.15
 

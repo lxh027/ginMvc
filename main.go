@@ -1,10 +1,10 @@
 package main
 
 import (
-	"OnlineJudge/server"
+	"Authority/server"
 	"github.com/gin-gonic/gin"
 )
-import "OnlineJudge/db_server"
+import "Authority/db_server"
 
 var httpServer *gin.Engine
 

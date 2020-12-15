@@ -1,7 +1,7 @@
 package db_server
 
 import (
-	"OnlineJudge/config"
+	"Authority/config"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
