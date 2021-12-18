@@ -1,0 +1,6 @@
+[GIN-debug] POST   /user/register            --> mvc/internal/app/api/user.CreateUser (6 handlers)
+[GIN-debug] POST   /user/login               --> mvc/internal/app/api/user.Login (6 handlers)
+[GIN-debug] POST   /user/logout              --> mvc/internal/app/api/user.Logout (6 handlers)
+[GIN-debug] GET    /admin/*filepath          --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (6 handlers)
+[GIN-debug] HEAD   /admin/*filepath          --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (6 handlers)
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:5000

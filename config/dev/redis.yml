@@ -1,0 +1,10 @@
+env: dev
+host: 127.0.0.1
+port: 6379
+auth:
+con_type: tcp
+
+max_idle: 4
+max_active: 8
+
+timeout: 300
