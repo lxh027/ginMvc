@@ -44,5 +44,5 @@ func (dao Dao) CheckUserLogin(username string, password string) formatter.Return
 	if err != nil {
 		return formatter.ReturnType{Status: constants.CodeError, Msg: "用户名或密码错误", Data: nil}
 	}
-	return formatter.ReturnType{Status: constants.CodeSuccess, Msg: "登录成功", Data: nil}
+	return formatter.ReturnType{Status: constants.CodeSuccess, Msg: "登录成功", Data: user}
 }

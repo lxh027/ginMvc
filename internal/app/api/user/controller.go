@@ -57,7 +57,7 @@ func Login(c *gin.Context) {
 		session.Set("user_id", user.Username)
 		session.Save()
 	}
-	c.JSON(http.StatusOK, formatter.ApiReturn(res.Status, res.Msg, res.Data))
+	c.JSON(http.StatusOK, formatter.ApiReturn(res.Status, res.Msg, nil))
 }
 
 func Logout(c *gin.Context) {
