@@ -15,6 +15,13 @@ make build
 
 - 浏览器打开`localhost:5000/admin`可看到前端页面
 - 测试sql中用户名密码分别为admin 123456
+- 测试登陆，POST如下json
+```json
+{
+    "username": "admin",
+    "password": "123456"
+}
+```
 
 ## modules
 
