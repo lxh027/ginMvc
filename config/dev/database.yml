@@ -2,7 +2,7 @@ host: 127.0.0.1
 port: 3306
 db_name: example
 username: root
-password: 19991107
+password: 123456
 charset: utf8
 parse_time: true
 
