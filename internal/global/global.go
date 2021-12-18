@@ -15,7 +15,7 @@ var ServerCfg config.Server
 var SessionCfg config.Session
 
 var MysqlClient *gorm.DB
-var RedisClient *redis.RedisClient
+var RedisClient *redis.Client
 
 func Init(env string) {
 	loadCfg(env)

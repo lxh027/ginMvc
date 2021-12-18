@@ -7,12 +7,12 @@ import (
 	"time"
 )
 
-type RedisClient struct {
+type Client struct {
 	Client *redis.Pool
 	prefix string
 }
 
-func NewRedisClient(cfg *config.Redis) *RedisClient {
+func NewRedisClient(cfg *config.Redis) *Client {
 	client := &redis.Pool{
 		MaxIdle:     cfg.MaxIdle,
 		MaxActive:   cfg.MaxActive,
@@ -31,14 +31,14 @@ func NewRedisClient(cfg *config.Redis) *RedisClient {
 			return c, nil
 		},
 	}
-	redisClient := RedisClient{
+	redisClient := Client{
 		Client: client,
 		prefix: cfg.Env,
 	}
 	return &redisClient
 }
 
-func (c *RedisClient) ZAddToRedis(key string, score int64, member interface{}) error {
+func (c *Client) ZAddToRedis(key string, score int64, member interface{}) error {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -46,14 +46,14 @@ func (c *RedisClient) ZAddToRedis(key string, score int64, member interface{}) e
 	return err
 }
 
-func (c *RedisClient) ZGetAllFromRedis(key string) (interface{}, error) {
+func (c *Client) ZGetAllFromRedis(key string) (interface{}, error) {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
 	return rc.Do("ZRANGE", key, 0, -1)
 }
 
-func (c *RedisClient) SAddToRedisSet(key string, member interface{}) error {
+func (c *Client) SAddToRedisSet(key string, member interface{}) error {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -61,7 +61,7 @@ func (c *RedisClient) SAddToRedisSet(key string, member interface{}) error {
 	return err
 }
 
-func (c *RedisClient) SIsNumberOfRedisSet(key string, member interface{}) (bool, error) {
+func (c *Client) SIsNumberOfRedisSet(key string, member interface{}) (bool, error) {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -69,7 +69,7 @@ func (c *RedisClient) SIsNumberOfRedisSet(key string, member interface{}) (bool,
 	return value, err
 }
 
-func (c *RedisClient) GetFromRedis(key string) (interface{}, error) {
+func (c *Client) GetFromRedis(key string) (interface{}, error) {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -77,7 +77,7 @@ func (c *RedisClient) GetFromRedis(key string) (interface{}, error) {
 	return value, err
 }
 
-func (c *RedisClient) PutToRedis(key string, value interface{}, timeout int) error {
+func (c *Client) PutToRedis(key string, value interface{}, timeout int) error {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -85,7 +85,7 @@ func (c *RedisClient) PutToRedis(key string, value interface{}, timeout int) err
 	return err
 }
 
-func (c *RedisClient) DeleteFromRedis(key string) error {
+func (c *Client) DeleteFromRedis(key string) error {
 	key = c.appendPrefix(key)
 	rc := c.Client.Get()
 	defer rc.Close()
@@ -93,6 +93,6 @@ func (c *RedisClient) DeleteFromRedis(key string) error {
 	return err
 }
 
-func (c *RedisClient) appendPrefix(key string) string {
+func (c *Client) appendPrefix(key string) string {
 	return c.prefix + "." + key
 }
