@@ -47,8 +47,7 @@ import "mvc/internal/global"
 
 func redis_sample() {
     _ = global.RedisClient.PutToRedis("key", "value", 3600)
-	
-	data, _ = global.RedisClient.GetFromRedis("key")
+    data, _ = global.RedisClient.GetFromRedis("key")
 }
 ```
 
